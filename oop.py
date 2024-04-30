@@ -1,3 +1,4 @@
+import unittest
 class Alumno:
     def __init__(self, nombre, legajo, correo):
         self.__nombre__ = nombre
@@ -45,3 +46,24 @@ class Profesor:
         return self.__legajo__
 
 
+
+class TestAlumno(unittest.TestCase):
+    def test_alumno(self):
+        alumno = Alumno("Francisco", "56107", "f.saldana")
+        self.assertEqual(alumno.__nombre__, "Francisco")
+        self.assertEqual(alumno.__legajo__, "56107")
+        self.assertEqual(alumno.__correo__, "f.saldana") 
+
+    def test_obtener_nombre(self):
+        alumno = Alumno("Francisco", "56107", "f.saldana")
+        self.assertEqual(alumno.obtener_nombre(), "Francisco")
+
+    def test_cambiar_correo(self):
+        correo = "f.saldana"
+        alumno = Alumno("Francisco", "56107", correo)
+        alumno.cambiar_correo("fsadams")
+        self.assertEqual(alumno.__correo__, "fsadams")
+    
+    
+if __name__ == '__main__':
+    unittest.main()
