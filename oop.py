@@ -64,6 +64,66 @@ class TestAlumno(unittest.TestCase):
         alumno.cambiar_correo("fsadams")
         self.assertEqual(alumno.__correo__, "fsadams")
     
-    
+
+class TestMateria(unittest.TestCase):
+    def test_materia(self):
+        nombre = "Computacion"
+        profesores = "Daniel"
+        alumno1 = Alumno("Francisco", "56107", "f.saldana")
+        alumno2 = Alumno("Carlos", "55555", "c.sainz")
+        alumnos = [alumno1,alumno2]
+        materia = Materia(nombre, profesores,alumnos)
+        self.assertEqual(materia.__nombre__, nombre)
+        self.assertEqual(materia.__profesores__, profesores)
+        self.assertEqual(materia.__alumnos__, alumnos)
+
+    def test_obtener(self):
+        profesores = "Daniel"
+        alumno1 = Alumno("Francisco", "56107", "f.saldana")
+        alumno2 = Alumno("Carlos", "55555", "c.sainz")
+        alumnos = [alumno1,alumno2]
+        materia = Materia("Computacion", profesores,alumnos)
+
+        self.assertEqual(materia.obtener_profesores(), profesores)
+
+    def test_cambiar(self):
+        nombre = "Computacion"
+        alumno1 = Alumno("Francisco", "56107", "f.saldana")
+        alumno2 = Alumno("Carlos", "55555", "c.sainz")
+        alumnos = [alumno1,alumno2]
+        materia = Materia(nombre, "Daniel",alumnos)
+        materia.cambiar_nombre("Programacion")
+
+        self.assertEqual(materia.__nombre__, "Programacion")
+
+    def test_obtener_alumnos(self):
+        alumno1 = Alumno("Francisco", "62080", "f.saldana")
+        alumno2 = Alumno("Carlos", "55555", "c.sainz")
+        alumno3 = Alumno('Martin','62272','m.tarantoviez')
+        alumnos = [alumno1,alumno2,alumno3]
+        
+        materia = Materia('Computacion','Daniel',alumnos)
+        self.assertEqual(materia.obtener_alumnos(),alumnos)
+
+
+class TestProfesor(unittest.TestCase):
+    def test_profesor(self):
+        profesores = Profesor("Daniel", "BOSS", "12345")
+        self.assertEqual(profesores.__nombre__, "Daniel")
+        self.assertEqual(profesores.__cargo__, "BOSS")
+        self.assertEqual(profesores.__legajo__, "12345")
+
+    def test_obtener_nombre(self):
+        profesores = Profesor("Daniel", "BOSS", "12345")
+        self.assertEqual(profesores.obtener_nombre(), "Daniel")
+
+    def test_obtener_cargo(self):
+        profesores = Profesor("Daniel", "BOSS", "12345")
+        self.assertEqual(profesores.obtener_cargo(), "BOSS")
+
+    def test_obtener_legajo(self):
+        profesores = Profesor("Daniel", "BOSS", "12345")
+        self.assertEqual(profesores.obtener_legajo(), "12345")
+
 if __name__ == '__main__':
     unittest.main()
